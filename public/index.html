@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="ja">
+ <head>
+ <meta charset="utf-8">
+ <title>セパ東北オープン</title>
+ <meta name="description" content="セパタクロー東北オープン大会 202411 in Sendai の大会データが確認できます。">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <link rel="stylesheet" href="/styles.css">
+ </head>
+
+ <body>
+   <!-- オーバーレイ -->
+  <div id="overlay" class="overlay page">
+    <div class="modal">   
+		<div class="container">
+		        <button id="close-button">×</button>
+		    <div class="content">
+		        <h1>試合詳細 <span id="modal_game_name">#A1</span></h1>
+		        <div class="game-info">
+		            <div>
+		                <span style="font-size: 1.25rem;">第<span id="modal_round">1</span>試合</span>
+		                <span style="font-size: 0.8rem;"><span id="modal_time">10:00</span></span>
+		            </div>
+		            <div>
+		                <span style="font-size: 1.25rem;"><span id="modal_court">A</span>コート</span>
+		                <span style="font-size: 0.8rem;">試合番号：<span id="modal_game_num">100</span></span>
+		            </div>
+		        </div>
+            
+            <div class="model-teams">
+                <div class="team-name team-left">
+                    <div id="modal_left_team_name">イーグルイーグル</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="team-name team-right">
+                    <div id="modal_right_team_name">タイガータイガー</div>
+                </div>
+            </div>
+            
+            <div class="score">
+                <div style="text-align: right; color: #60a5fa;" id="modal_left_total_sets">1</div>
+                <div class="score-total" style="text-align: center; color: #f1c40f;">計</div>
+                <div style="text-align: left; color: #f97316;" id="modal_right_total_sets">1</div>
+            </div>
+            
+            <div class="set-scores">
+                <div class="set-score" style="text-align: right; background-color: rgba(96, 165, 250, 0.125); color: #60a5fa;" id="modal_left_1set">15</div>
+                <div class="set-label">1SET</div>
+                <div class="set-score" style="text-align: left; background-color: rgba(249, 115, 22, 0.125); color: #f97316;" id="modal_right_1set">8</div>
+            </div>
+            
+            <div class="set-scores">
+                <div class="set-score" style="text-align: right; background-color: rgba(96, 165, 250, 0.125); color: #60a5fa;" id="modal_left_2set">9</div>
+                <div class="set-label">2SET</div>
+                <div class="set-score" style="text-align: left; background-color: rgba(249, 115, 22, 0.125); color: #f97316;" id="modal_right_2set">15</div>
+            </div>
+            
+            <div class="set-scores">
+                <div class="set-score" style="text-align: right; background-color: rgba(96, 165, 250, 0.125); color: #60a5fa;" id="modal_left_3set">0</div>
+                <div class="set-label">3SET</div>
+                <div class="set-score" style="text-align: left; background-color: rgba(249, 115, 22, 0.125); color: #f97316;" id="modal_right_3set">0</div>
+            </div>
+            
+            <div class="judges">
+                <span id="modal_left_judge">ホークス</span>
+                <br><span id="modal_right_judge">ライオンズ</span>
+            </div>
+            
+            <div class="game-status" id="modal_game_status">
+                試合終了
+            </div>
+	        </div>
+	    </div>
+    </div>
+  </div>
+  <!-- オーバーレイ終わり -->
+
+  <div class="card-header" id="site_title"><span class="shine_text">セパ東北オープン大会 日程・結果</span></div>
+  <a id="title_balloon" data-id="0" target="_blank">セパタクロー東北オープン</a>
+
+<!----- schedule----->
+<div id="pageSchedule">
+  <div class="tab-container">
+    <ul class="tab-list">
+      <li><button class="tab-link active" data-tab="all" id="game_list_button">試合一覧</button></li>
+      <li><button class="tab-link" data-tab="category1" id="my_schedule_button">マイスケ</button></li>
+      <!-- <li><button class="tab-link" data-tab="category2" id="league_button">リーグ</button></li> -->
+    </ul>
+    <div class="tab-content show" data-content="all">
+      <ul class="sub-tab-list">
+        <li><button class="sub-tab-link active" data-sub-tab="sub1" id="all_game_button">すべて</button></li>
+        <li><button class="sub-tab-link" data-sub-tab="sub2" id="before_game_button">開始前</button></li>
+        <li><button class="sub-tab-link" data-sub-tab="sub3" id="during_game_button">試合中</button></li>
+        <li><button class="sub-tab-link" data-sub-tab="sub4" id="after_game_button">終了済</button></li>
+        <li><button class="sub-tab-link" data-sub-tab="sub5">詳細検索</button></li>
+      </ul>
+      <div class="sub-tab-content show" data-sub-content="sub1">
+        
+      </div>
+      <div class="sub-tab-content" data-sub-content="sub2">
+        
+      </div>
+      <div class="sub-tab-content" data-sub-content="sub3">
+        
+      </div>
+      <div class="sub-tab-content" data-sub-content="sub4">
+        
+      </div>
+      <div class="sub-tab-content" data-sub-content="sub5">
+        <div class="card-body">
+          <form class="search-form">
+            <div class="form-group">
+              <select id="time_select_button">
+                <option value="" selected>開始時間</option>
+                <option value="10:00">10:00</option>
+                <option value="10:40">10:40</option>
+                <option value="11:20">11:20</option>
+                <option value="12:00">12:00</option>
+                <option value="12:40">12:40</option>
+                <option value="13:20">13:20</option>
+                <option value="14:00">14:00</option>
+                <option value="14:40">14:40</option>
+                <option value="15:30">15:30</option>
+                <option value="16:40">16:40</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <select id="court_select_button">
+                <option value="" selected>コート</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                <option value="E">E</option>
+                <option value="F">F</option>
+                <option value="G">G</option>
+                <option value="H">H</option>
+                <option value="I">I</option>
+                <option value="J">J</option>
+                <option value="K">K</option>
+                <option value="L">L</option>
+                <option value="M">M</option>
+                <option value="N">N</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <input id="game_select_button" type="text" placeholder="試合番号">
+            </div>
+            <div class="form-group">
+              <input id="regu_select_button" type="text" placeholder="レグ名">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="tab-content" data-content="category1">
+      <div class="form-group">
+        <select class="wide_select" id="regu_list">
+          <option value="" class="gray">-- マイスケジュールに登録したいレグを選択 --</option>
+          <!-- <? output._ = athlete_regu_list; ?>
+          <? output._ = enjoy_regu_list; ?> -->
+        </select>
+        <h5 class="favorite_display">登録中：<span id="favorite_regu"></span></h5>
+        <h6 style="margin: 1rem 0;">※審判が担当の試合も含まれています。試合をクリックして確認。</h6>
+      </div>
+    </div>
+    <!-- <div class="tab-content" data-content="category2">
+      リーグのコンテンツ
+    </div> -->
+
+    <div class="match-container" id="info"></div>
+    <div id="scroll-text-area">
+        <a id="scroll-text" data-id="0" target="_blank">This is some text that will scroll across the screen</a>
+    </div>
+    <div class="blankArea"></div>
+  </div>
+</div>
+<!----- /schedule ----->
+
+ 
+
+
+<!-- preliminary -->
+ <!-- <div id="pagePreliminary" class="page">
+
+  <div class="score_sheet">
+    <h5 class="alert alert-light " role="alert">予選グループリーグ表 (アスリート)</h5>
+    <div id="score_sheet_athlete"></div>
+    
+    <div class="blankArea"></div>   
+    <h5 class="alert alert-light" role="alert">予選グループリーグ表 (エンジョイ)</h5>
+    <div id="score_sheet_enjoy"></div>
+    
+    <div class="bannerAds">
+      <a href="https://www.gyutan-tsukasa.co.jp/" id="hrefArea" target="_blank" onclick="clickAds()"><img src="https://drive.google.com/uc?export=view&id=1YBpAzxT7qjGLoQiIhwhQv3eb_T-VFMNs&usp=sharing" id="imageArea" alt="牛タン焼専門店 司"></a>
+    </div>
+    <div class="blankArea"></div>
+
+    <div class="nav_preliminary">
+      <ul class="nav_preliminary__menu">
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_A">A</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_B">B</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_C">C</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_D">D</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_E">E</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_F">F</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_G">G</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_H">H</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_I">I</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_J">J</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_K">K</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_L">L</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_M">M</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_N">N</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_O">O</a></li>
+        <li class="nav_preliminary__menu__item border_css"><a href="#table_P">P</a></li>
+      </ul>
+    </div>
+  </div>
+ </div> -->
+<!-- /preliminary -->
+
+<!-- final -->
+ <!-- <div id="pageFinal" class="page">
+   <h5 class="alert alert-light" role="alert">決勝トーナメント (アスリート)</h5>
+   <div class="border_css2" id="tournamentAthlete">
+     <? output._ = tournament_athlete; ?>
+   </div>
+   <div class="blankArea"></div>
+
+   <h5 class="alert alert-light" role="alert">決勝トーナメント (エンジョイ)</h5>
+   <div class="border_css2" id="tournamentEnjoy">
+     <? output._ = tournament_enjoy; ?>
+   </div>
+    <div class="bannerAds">
+      <a href="https://store.fujibo-ap.jp/s/pa/" id="hrefArea" target="_blank" onclick="clickAds()"><img src="https://drive.google.com/uc?export=view&id=1gHjl8ThJXA6ztoE48rctHo_nNgN0CJVw&usp=sharing" id="imageArea" alt="B.V.D."></a>
+    </div>
+    <div class="blankArea"></div>
+   <div class="nav_final">
+      <ul class="nav_final__menu">
+        <li class="nav_final__menu__item"><a href="#tournamentAthlete">アスリート</a></li>
+        <li class="nav_final__menu__item"><a href="#tournamentEnjoy">エンジョイ</a></li>
+      </ul>
+    </div>
+ </div> -->
+<!-- /final -->
+
+ 
+ <!----- footer ----->
+ <!-- <div class="site-footer">
+  <nav class="gnav">
+    <ul class="gnav__menu">
+      <li id="nav_schedule" class="gnav__menu__item">日程</li>
+      <li id="nav_preliminary" class="gnav__menu__item">予選</li>
+      <li id="nav_final" class="gnav__menu__item">決勝</li>
+    </ul>
+  </nav>
+ </div> -->
+ <footer>
+  <p class="copyright">Copyright &copy; <a href="https://sendai-sepak.1web.jp/" target="_blank">セパタクロー東北オープン大会 2021-2024<a> All Rights Reserved.</p>
+ </footer>
+ <!----- /footer ----->
+
+
+<script>
+fetch('/api/games')
+  .then(response => response.json())
+  .then(data => {
+    const infoDiv = document.getElementById('info');
+    data.forEach((game, index) => {
+      let rowClass = "";
+      let game_status = "";
+      let game_status_text = "";
+      if (game.isFinished === 1) {
+        rowClass = "_finished";
+        game_status = "finished";
+        game_status_text = "終了済";
+      } else if (game.isStarted === 0) {
+        rowClass = "not_started";
+        game_status = "not-started";
+        game_status_text = "試合前";      
+      } else if (game.isStarted === 1) {
+        rowClass = "in_progress";
+        game_status = "in-progress";
+        game_status_text = "試合中";         
+      }
+      
+      const gameDiv = document.createElement('div');
+      gameDiv.innerHTML = `
+        <div class="match-card ${rowClass} game_row" data-gameid="${game.gameId}">
+
+          <div class="card-content">
+              <div class="section-time">
+                  <div class="section">${game.round}</div>
+                  <div class="time">${game.time}</div>
+              </div>
+              <div class="court">
+                  <div class="court-letter">${game.courtName}</div>
+                  <div class="court-label">コート</div>
+              </div>
+              <div class="match-info">
+                  <div class="teams">
+                      <div class="card-team card-team-left">
+                          <div class="card-team-name">${game.areguAbb}</div>
+                      </div>
+                      <div class="match-status">
+                          <span class="status-indicator ${game_status}"></span>
+                          <span class="status-text">${game_status_text}</span>
+                          <span class="versus">vs</span>
+                      </div>
+                      <div class="card-team card-team-right">
+                          <div class="card-team-name">${game.breguAbb}</div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <button class="details-button" aria-label="試合詳細を表示">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+          </button>
+        </div>
+      `;
+      infoDiv.appendChild(gameDiv);
+    });
+  });
+
+function createReguList(inputGroup) {
+  let reguListHTML = '';
+
+  for (const [group, teams] of Object.entries(inputGroup)) {
+    teams.forEach(team => {
+      reguListHTML += `<option value="${team.name}">${group}: ${team.name}</option>`;
+    });
+  }
+
+  return reguListHTML;
+}
+
+fetch('/api/regus')
+  .then(response => response.json())
+  .then(data => {
+    const reguList = document.getElementById('regu_list');
+    const athleteReguList = createReguList(data.athlete);
+    // const enjoyReguList = createReguList(data.enjoy);
+
+    // reguList.innerHTML = athleteReguList + enjoyReguList;
+    reguList.innerHTML += athleteReguList;
+  });
+
+// メインタブの要素を取得する
+const tabLinks = document.querySelectorAll('.tab-link');
+const tabContents = document.querySelectorAll('.tab-content');
+
+// メインタブがクリックされた時
+tabLinks.forEach(tabLink => {
+    tabLink.addEventListener('click', () => {
+        const currentTab = document.querySelector('.active');
+        const targetContent = document.querySelector(`[data-content="${tabLink.dataset.tab}"]`);
+
+        currentTab.classList.remove('active');
+        tabLink.classList.add('active');
+
+        tabContents.forEach(tabContent => {
+            tabContent.classList.remove('show');
+        });
+
+        targetContent.classList.add('show');
+    });
+});
+
+// サブタブの要素を取得する
+const subTabLinks = document.querySelectorAll('.sub-tab-link');
+const subTabContents = document.querySelectorAll('.sub-tab-content');
+
+// サブタブがクリックされた時
+subTabLinks.forEach(subTabLink => {
+    subTabLink.addEventListener('click', () => {
+        // メインタブの処理と同様に、アクティブなサブタブを切り替え、対応するコンテンツを表示する
+        const currentSubTab = document.querySelector('.sub-tab-link.active');
+        const targetSubContent = document.querySelector(`[data-sub-content="${subTabLink.dataset.subTab}"]`);
+
+        currentSubTab.classList.remove('active');
+        subTabLink.classList.add('active');
+
+        subTabContents.forEach(subTabContent => {
+            subTabContent.classList.remove('show');
+        });
+
+        targetSubContent.classList.add('show');
+    });
+});
+
+// 検索のトリガーとなる要素を取得する
+const game_list_button = document.getElementById("game_list_button");
+const league_button = document.getElementById("league_button");
+const all_game_button = document.getElementById("all_game_button");
+const before_game_button = document.getElementById("before_game_button");
+const during_game_button = document.getElementById("during_game_button");
+const after_game_button = document.getElementById("after_game_button");
+const time_select_button = document.getElementById("time_select_button");
+const court_select_button = document.getElementById("court_select_button");
+const game_select_button = document.getElementById("game_select_button");
+const regu_select_button = document.getElementById("regu_select_button");
+const my_schedule_button = document.getElementById("my_schedule_button");
+const regu_list = document.getElementById("regu_list");
+
+// イベントリスナーを登録する
+game_list_button.addEventListener("click", {marker: 0, handleEvent: searchEvent});
+during_game_button.addEventListener("click", {marker: 2, handleEvent: searchEvent});
+all_game_button.addEventListener("click", {marker: 0, handleEvent: searchEvent});
+before_game_button.addEventListener("click", {marker: 3, handleEvent: searchEvent});
+after_game_button.addEventListener("click", {marker: 1, handleEvent: searchEvent});
+time_select_button.addEventListener("change", {marker: 4, handleEvent: searchEvent});
+court_select_button.addEventListener("change", {marker: 4, handleEvent: searchEvent});
+game_select_button.addEventListener("change", {marker: 4, handleEvent: searchEvent});
+regu_select_button.addEventListener("change", {marker: 4, handleEvent: searchEvent});
+my_schedule_button.addEventListener("click", {marker: 5, handleEvent: searchEvent});
+regu_list.addEventListener("change", {marker: 5, handleEvent: searchEvent});
+
+
+// 検索処理
+function searchEvent() {
+
+  // 処理分岐マーカーをオブジェクトリテラルで定義
+  const MARKER = {    
+    INITIAL: 0, // 0: 初期表示
+    FINISHED: 1, // 1: 終了済の試合を表示
+    ONGOING: 2, // 2: 開始中の試合を表示
+    UPCOMING: 3, // 3: 開始前の試合を表示
+    SEARCH: 4, // 4: 検索条件に沿って表示
+    MYSCHEDULE: 5, // 5: マイスケジュールに沿って表示
+  };
+
+  // マーカーがなければ初期表示
+  let marker = this.marker ? this.marker : MARKER.INITIAL;
+
+  // 検索条件を保持するオブジェクト
+  const searchConditions = {
+    time: "",
+    court: "",
+    game: "",
+    regu: "",
+    reguList: "",
+    myFavorite: "",
+  };
+
+  // 検索条件の初期化
+  const initializeSearchConditions = () => {
+    searchConditions.time = time_select_button.value = "";
+    searchConditions.court = court_select_button.value = "";
+    searchConditions.game = game_select_button.value = "";
+    searchConditions.regu = regu_select_button.value = "";
+  };
+
+  // マイスケジュール処理
+  const handleMySchedule = () => {
+    // 空文字チェック
+    if (regu_list.value) {
+      // 中身がある場合
+      // LocalStorageに保存する
+      localStorage.setItem('favorite_regu', regu_list.value);
+      document.getElementById("favorite_regu").textContent = regu_list.value;
+    } else {
+      // 空文字の場合
+      // LocalStorageから取り出す
+      let got_favorite_regu = localStorage.getItem("favorite_regu");
+      // 中身がある場合
+      if (got_favorite_regu) {
+        document.getElementById("favorite_regu").textContent = got_favorite_regu;
+        regu_list.value = got_favorite_regu;
+      }
+    }
+  };
+
+  // マーカーによる事前処理分岐
+  if ([MARKER.INITIAL, MARKER.MYSCHEDULE].includes(marker)) {
+    initializeSearchConditions();
+    if (marker === MARKER.MYSCHEDULE) {
+      handleMySchedule();
+    }
+  } else if (marker === MARKER.SEARCH) {
+    marker = MARKER.INITIAL;
+  }
+
+  // 検索結果のリスト
+  const id_stock = [];
+  // 検索結果が何もない
+  let isEmpty = true;
+
+  fetch('/api/games')
+  .then(response => response.json())
+  .then(data => {
+
+    // 検索条件を取得する
+    searchConditions.time = time_select_button.value;
+    searchConditions.court = court_select_button.value;
+    searchConditions.game = game_select_button.value;
+    searchConditions.regu = regu_select_button.value;
+    searchConditions.reguList = regu_list.value;
+    searchConditions.myFavorite = document.getElementById("favorite_regu").textContent;
+
+    // テーブルに追加すべきか判断する
+    const shouldPush = (marker, isStarted, isFinished) => {
+      if (marker === MARKER.INITIAL) {
+        return true;
+      }else if (marker === MARKER.FINISHED && isFinished === 1) {
+        return true;
+      }else if (marker === MARKER.ONGOING && isStarted === 1) {
+        return true;
+      }else if (marker === MARKER.UPCOMING && isStarted === 0) {
+        return true;
+      }
+      return false;
+    }
+
+    // 時間による検索
+    if (searchConditions.time !== "") {
+      data.forEach(game => {
+        if (game.time === searchConditions.time) {
+          if (id_stock.indexOf(game.gameId) == -1) {
+            if (shouldPush(marker, game.isStarted, game.isFinished)) {
+              id_stock.push(game.gameId);
+              isEmpty = false;
+            }
+          }
+        }
+      });
+    }
+
+    // コートによる検索
+    if (searchConditions.court !== "") {
+      data.forEach(game => {
+        if (game.courtName === searchConditions.court) {
+          if (id_stock.indexOf(game.gameId) == -1) {
+            if (shouldPush(marker, game.isStarted, game.isFinished)) {
+              id_stock.push(game.gameId);
+              isEmpty = false;
+            }
+          }
+        }
+      });
+    }
+    
+    // 試合番号による検索
+    if (searchConditions.game !== "") {
+      data.forEach(game => {
+        if (game.gameId === searchConditions.game) {
+          if (id_stock.indexOf(game.gameId) == -1) {
+            if (shouldPush(marker, game.isStarted, game.isFinished)) {
+              id_stock.push(game.gameId);
+              isEmpty = false;
+            }
+          }
+        }
+      });
+    }
+    
+    // レグ名による検索
+    if (searchConditions.regu !== "") {
+      data.forEach(game => {
+        if (game.areguAbb === searchConditions.regu || game.breguAbb === searchConditions.regu) {
+          if (id_stock.indexOf(game.gameId) == -1) {
+            if (shouldPush(marker, game.isStarted, game.isFinished)) {
+              id_stock.push(game.gameId);
+              isEmpty = false;
+            }
+          }
+        }
+      });
+    }
+    
+    // マイスケジュールによる検索
+    if (searchConditions.reguList !== "" && marker == MARKER.MYSCHEDULE) {
+      data.forEach(game => {
+        if (game.areguAbb === searchConditions.myFavorite || game.breguAbb === searchConditions.myFavorite
+        || game.mainJudgeReguName === searchConditions.myFavorite || game.subJudgeReguName === searchConditions.myFavorite) {
+          if (id_stock.indexOf(game.gameId) == -1) {
+            id_stock.push(game.gameId);
+            isEmpty = false;
+          }
+        }
+      });
+      regu_list.value = "";
+    }
+
+    // 検索結果が何もない場合は、一覧を返す
+    if (isEmpty == true) {
+      data.forEach(game => {
+        if (shouldPush(marker, game.isStarted, game.isFinished)) {
+          id_stock.push(game.gameId);
+        }
+      });
+    }
+
+    // tbodyの初期化
+    const tbody = document.getElementById("info");
+    tbody.innerHTML = '';
+
+    // tbodyにデータ表示
+    let tableRows = '';
+    data.forEach(game => {
+      if (id_stock.includes(game.gameId)) {
+        let rowClass = "";
+        let game_status = "";
+        let game_status_text = "";
+        if (game.isFinished === 1) {
+          rowClass = "_finished";
+          game_status = "finished";
+          game_status_text = "終了済";
+        } else if (game.isStarted === 0) {
+          rowClass = "not_started";
+          game_status = "not-started";
+          game_status_text = "試合前";      
+        } else if (game.isStarted === 1) {
+          rowClass = "in_progress";
+          game_status = "in-progress";
+          game_status_text = "試合中";         
+        }
+
+        tableRows += `
+          <div class="match-card ${rowClass} game_row" data-gameid="${game.gameId}">
+            <div class="card-content">
+                <div class="section-time">
+                    <div class="section">${game.round}</div>
+                    <div class="time">${game.time}</div>
+                </div>
+                <div class="court">
+                    <div class="court-letter">${game.courtName}</div>
+                    <div class="court-label">コート</div>
+                </div>
+                <div class="match-info">
+                    <div class="teams">
+                        <div class="card-team card-team-left">
+                            <div class="card-team-name">${game.areguAbb}</div>
+                        </div>
+                        <div class="match-status">
+                            <span class="status-indicator ${game_status}"></span>
+                            <span class="status-text">${game_status_text}</span>
+                            <span class="versus">vs</span>
+                        </div>
+                        <div class="card-team card-team-right">
+                            <div class="card-team-name">${game.breguAbb}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="details-button" aria-label="試合詳細を表示">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+          </div>`;
+      }
+    });
+    tbody.innerHTML = tableRows;
+  });
+}
+
+// 大会日程の各行にクリックイベントリスナーを追加
+const gameRows = document.querySelectorAll(".game_row");
+gameRows.forEach(row => {
+  row.addEventListener('click', function(event) {
+    // クリックされた行のgameidを取得
+    const gameid = this.getAttribute('data-gameid');
+
+    // オーバーレイと対応する審判テーブルを表示
+    const overlay = document.getElementById('overlay');
+    createModalWindow(gameid);
+
+    if (overlay) fadeIn(overlay);
+  });
+});
+
+// 動的生成後の要素に対して
+document.addEventListener('click', function(event) {
+  const gameRow = event.target.closest('.game_row');
+  if (gameRow) {
+    const gameid = gameRow.getAttribute('data-gameid');
+
+    const overlay = document.getElementById('overlay');
+    createModalWindow(gameid);
+    
+    if (overlay) fadeIn(overlay);
+  }
+});
+
+// オーバーレイをクリックした時の処理
+const overlay = document.getElementById('overlay');
+overlay.addEventListener('click', function() {
+  // オーバーレイを非表示
+  fadeOut(overlay);
+});
+// 閉じるボタンをクリックしたときの処理
+const close_button = document.getElementById('close-button');
+close_button.addEventListener('click', function() {
+  // オーバーレイを非表示
+  fadeOut(overlay);
+});
+
+// フェードイン効果を実装する関数
+function fadeIn(element) {
+    element.style.opacity = 0;
+    element.style.display = 'block';
+    
+    let opacity = 0;
+    let timer = setInterval(function() {
+        if (opacity >= 1) {
+            clearInterval(timer);
+        }
+        element.style.opacity = opacity;
+        opacity += 0.1;
+    }, 50);
+}
+
+// フェードアウト効果を実装する関数
+function fadeOut(element) {
+    let opacity = 1;
+    let timer = setInterval(function() {
+        if (opacity <= 0) {
+            clearInterval(timer);
+            element.style.display = 'none';
+        }
+        element.style.opacity = opacity;
+        opacity -= 0.1;
+    }, 50);
+}
+
+// 行がクリックされたら、その行のgame-idを取得する
+function createModalWindow(gameid) {
+  fetch('/api/games')
+  .then(response => response.json())
+  .then(data => {
+    const filteredGame = data.filter(game => game.gameId === Number(gameid))[0];
+
+    const setTextContent = (elementId, text) => {
+      document.getElementById(elementId).textContent = text;
+    };
+
+    // overlayに埋め込む
+    setTextContent("modal_game_name", filteredGame.round);
+    setTextContent("modal_round", filteredGame.round);
+    setTextContent("modal_time", filteredGame.time);
+    setTextContent("modal_court", filteredGame.courtName);
+    setTextContent("modal_game_num", filteredGame.gameId);
+    setTextContent("modal_left_team_name", filteredGame.areguAbb);
+    setTextContent("modal_left_1set", filteredGame.points1setA);
+    setTextContent("modal_left_2set", filteredGame.points2setA);
+    setTextContent("modal_left_3set", filteredGame.points3setA);
+    setTextContent("modal_left_total_sets", filteredGame.setNumGotByA);
+    setTextContent("modal_right_team_name", filteredGame.breguAbb);
+    setTextContent("modal_right_1set", filteredGame.points1setB);
+    setTextContent("modal_right_2set", filteredGame.points2setB);
+    setTextContent("modal_right_3set", filteredGame.points3setB);
+    setTextContent("modal_right_total_sets", filteredGame.setNumGotByB);
+
+    setTextContent("modal_left_judge", filteredGame.mainJudgeReguName ? `【主審】${filteredGame.mainJudgeReguName}` : "");
+    setTextContent("modal_right_judge", filteredGame.subJudgeReguName ? ` 【副審】${filteredGame.subJudgeReguName}` : "");
+
+    const gameStatusMapping = (isStarted, isFinished) => {
+      if (isFinished === 1) {
+        return "試合終了";
+      } else if (isStarted === 0) {
+        return "試合前";
+      } else if (isStarted === 1) {
+        return "試合中";
+      }
+    };
+
+    const game_status = gameStatusMapping(filteredGame.isStarted, filteredGame.isFinished);
+    setTextContent("modal_game_status", game_status || "");
+  });
+}
+
+// 大会日程の予選グループ表の各セルにクリックイベントリスナーを追加
+// const results = document.querySelectorAll(".result");
+// results.forEach(cell => {
+//   cell.addEventListener('click', function(event) {
+//     // クリックされた行のgamenumとlrを取得
+//     const game_num = this.getAttribute('data-gamenum');
+//     const lr = this.getAttribute('data-lr');
+//     if ((!game_num) || (!lr)) {
+//       return;
+//     }
+
+//     // オーバーレイを表示
+//     const overlay = document.getElementById('overlay');
+//     createModalWindowLeague(game_num, lr);
+
+//     if (overlay) fadeIn(overlay);
+//   });
+// });
+
+// class:resultがクリックされたら、試合番号(game-num)と左右(lr)を取得する
+// function createModalWindowLeague(game_num, lr) {
+//   // index.html のhidden list から値を全て取ってくる
+//   const info_list = document.getElementById("info_list").getElementsByTagName("ul");
+
+//   // game_numからgameidを探す
+//   const findIndexOfText = (collection, text) => {
+//     for (let i = 0; i < collection.length; i++) {
+//       if (collection[i].textContent.trim() === text) {
+//         return i;
+//       }
+//     }
+//     return -1;
+//   };
+
+//   // gameidを取得する
+//   const gameid = findIndexOfText(info_list[3].getElementsByTagName("li"), game_num);
+
+//   const getInfoValue = (listIndex, gameid) => info_list[listIndex].getElementsByTagName("li")[gameid].textContent;
+
+//   const setTextContent = (elementId, text) => {
+//     document.getElementById(elementId).textContent = text;
+//   };
+
+//   const leftRightMapping = {
+//     "a": { main: 5, total: 21, setsStart: 23, opponent: 6, opponentTotal: 22, opponentSetsStart: 26 },
+//     "b": { main: 6, total: 22, setsStart: 26, opponent: 5, opponentTotal: 21, opponentSetsStart: 23 }
+//   };
+
+//   const mapping = leftRightMapping[lr] || leftRightMapping['a'];
+  
+//   // overlayに埋め込む
+//   setTextContent("modal_game_name", getInfoValue(4, gameid));
+//   setTextContent("modal_round", getInfoValue(0, gameid));
+//   setTextContent("modal_time", getInfoValue(1, gameid));
+//   setTextContent("modal_court", getInfoValue(2, gameid));
+//   setTextContent("modal_game_num", getInfoValue(3, gameid));
+  
+//   setTextContent("modal_left_team_name", getInfoValue(mapping.main, gameid));
+//   setTextContent("modal_left_1set", getInfoValue(mapping.setsStart, gameid));
+//   setTextContent("modal_left_2set", getInfoValue(mapping.setsStart + 1, gameid));
+//   setTextContent("modal_left_3set", getInfoValue(mapping.setsStart + 2, gameid));
+//   setTextContent("modal_left_total_sets", getInfoValue(mapping.total, gameid));
+
+//   setTextContent("modal_right_team_name", getInfoValue(mapping.opponent, gameid));
+//   setTextContent("modal_right_1set", getInfoValue(mapping.opponentSetsStart, gameid));
+//   setTextContent("modal_right_2set", getInfoValue(mapping.opponentSetsStart + 1, gameid));
+//   setTextContent("modal_right_3set", getInfoValue(mapping.opponentSetsStart + 2, gameid));
+//   setTextContent("modal_right_total_sets", getInfoValue(mapping.opponentTotal, gameid));
+
+//   setTextContent("modal_left_judge", getInfoValue(17, gameid) ? `【主審】${getInfoValue(17, gameid)}` : "");
+//   setTextContent("modal_right_judge", getInfoValue(18, gameid) ? ` 【副審】${getInfoValue(18, gameid)}` : "");
+
+//   const gameStatusMapping = {
+//     "": "試合前",
+//     "1": "試合終了",
+//     "2": "試合中"
+//   };
+
+//   const game_status = getInfoValue(31, gameid); 
+//   setTextContent("modal_game_status", gameStatusMapping[game_status] || "");
+// }
+
+// // 協賛企業のバナーのランダム表示
+// const hrefArea = document.getElementById('hrefArea');
+// const imageArea = document.getElementById('imageArea');
+// const infos = [
+//   ['https://drive.google.com/uc?export=view&id=1YBpAzxT7qjGLoQiIhwhQv3eb_T-VFMNs&usp=sharing', '牛タン焼専門店 司', 'https://www.gyutan-tsukasa.co.jp/'],];
+// const imageNo = Math.floor(Math.random() * infos.length)
+// imageArea.src = infos[imageNo][0];
+// imageArea.alt = infos[imageNo][1];
+// hrefArea.href = infos[imageNo][2];
+
+// // 広告のカウント
+// function clickAds() {
+//   google.script.run.withSuccessHandler(meaningless).withFailureHandler(meaningless).clickAds();
+
+//   function meaningless() {
+//     const meaning = ""
+//   }
+// }
+
+// フッター始まり
+
+// スクロール時の表示設定
+// const _window = window;
+// const _navPreliminary = document.querySelector('.nav_preliminary');
+// const _footer = document.querySelector('.site-footer');
+// let startPos = 0;
+// let winScrollTop = 0;
+
+// _window.addEventListener('scroll', function() {
+//   winScrollTop = window.pageYOffset; 
+//   if (winScrollTop >= startPos) {
+//     _navPreliminary.classList.add('hide');
+//     _footer.classList.add('hide');
+//   } else {
+//     _navPreliminary.classList.remove('hide');
+//     _footer.classList.remove('hide');
+//   }
+//   startPos = winScrollTop;
+// });
+
+// 画面切り替えボタンの取得
+// const nav_schedule = document.getElementById("nav_schedule");
+// const nav_preliminary = document.getElementById("nav_preliminary");
+// const nav_final = document.getElementById("nav_final");
+
+// 画面切り替え処理の登録
+// nav_schedule.addEventListener("click", function() {
+//   document.getElementById("pageSchedule").style.display = "block"; 
+//   document.getElementById("pagePreliminary").style.display = "none"; 
+//   // pageFinal.hide();
+// });
+// nav_preliminary.addEventListener("click", function() {
+//   document.getElementById("pageSchedule").style.display = "none"; 
+//   document.getElementById("pagePreliminary").style.display = "block";
+//   // pageFinal.hide();
+// });
+// league_button.addEventListener("click", function() {
+//   document.getElementById("pageSchedule").style.display = "none"; 
+//   document.getElementById("pagePreliminary").style.display = "block";
+//   // pageFinal.hide();
+// });
+// nav_final.addEventListener("click", function() {
+//   pageSchedule.hide();
+//   pagePreliminary.hide();
+//   pageFinal.show();
+// });
+
+// フッター終わり
+
+// let scroll_infos = [
+//     // ['「今、芽の出ていない人も諦める必要はない。」 by 野茂英雄(野球選手)', 'https://www.google.com/search?q=%E9%87%8E%E8%8C%82%E8%8B%B1%E9%9B%84&oq=%E9%87%8E%E8%8C%82%E8%8B%B1%E9%9B%84&aqs=chrome..69i57j0i512l9.375j0j7&sourceid=chrome&ie=UTF-8'],
+//     // ['「失敗と書いて成功と読む。」 by 野村克也(野球選手)', 'https://www.google.com/search?q=%E9%87%8E%E6%9D%91%E5%85%8B%E4%B9%9F&oq=%E9%87%8E%E6%9D%91%E5%85%8B%E4%B9%9F&aqs=chrome..69i57j0i131i433j0i512l8.767j0j7&sourceid=chrome&ie=UTF-8'],
+//     ['「僕は天才ではありません。なぜかと言うと、どうしてヒットを打てるか説明できるからです。」 by イチロー(野球選手)', 'https://www.google.com/search?q=%E3%82%A4%E3%83%81%E3%83%AD%E3%83%BC&oq=%E3%82%A4%E3%83%81%E3%83%AD%E3%83%BC&aqs=chrome..69i57j0i67j0i433i512j0i131i433j0i67j0i512l5.486j0j9&sourceid=chrome&ie=UTF-8'],
+//     ['「努力すれば報われる？そうじゃないだろ。報われるまで努力するんだ。」 by リオネル・メッシ(サッカー選手)', 'https://www.google.com/search?q=%E3%83%AA%E3%82%AA%E3%83%8D%E3%83%AB%E3%83%BB%E3%83%A1%E3%83%83%E3%82%B7&oq=%E3%83%AA%E3%82%AA%E3%83%8D%E3%83%AB%E3%83%BB%E3%83%A1%E3%83%83%E3%82%B7&aqs=chrome..69i57j0i512l9.1901j0j9&sourceid=chrome&ie=UTF-8'],
+//     ['「勝ち負けなんかちっぽけなこと。大事なことは本気だったかどうかだ。」 by 松岡修造(テニス選手)', 'https://www.google.com/search?q=%E6%9D%BE%E5%B2%A1%E4%BF%AE%E9%80%A0&oq=%E6%9D%BE%E5%B2%A1%E4%BF%AE%E9%80%A0&aqs=chrome..69i57j0i512l9.757j0j9&sourceid=chrome&ie=UTF-8'],
+//     ['「私は失敗を受け入れることができる。しかし、挑戦しないことだけは許せないんだ。」 by マイケル・ジョーダン(バスケットボール選手)', 'https://www.google.com/search?q=%E3%83%9E%E3%82%A4%E3%82%B1%E3%83%AB%E3%83%BB%E3%82%B8%E3%83%A7%E3%83%BC%E3%83%80%E3%83%B3&oq=%E3%83%9E%E3%82%A4%E3%82%B1%E3%83%AB%E3%83%BB%E3%82%B8%E3%83%A7%E3%83%BC%E3%83%80%E3%83%B3&aqs=chrome..69i57j0i512l9.879j0j9&sourceid=chrome&ie=UTF-8'],
+//     // ['「走った距離は裏切らない。」 by 野口みずき(マラソン選手)', 'https://www.google.com/search?q=%E9%87%8E%E5%8F%A3%E3%81%BF%E3%81%9A%E3%81%8D&oq=%E9%87%8E%E5%8F%A3%E3%81%BF%E3%81%9A%E3%81%8D&aqs=chrome..69i57j0i512l9.1312j0j7&sourceid=chrome&ie=UTF-8'],
+//     ['「負けを知った時、初めて勝つことができる。」 by 北島康介(水泳選手)', 'https://www.google.com/search?q=%E5%8C%97%E5%B3%B6%E5%BA%B7%E4%BB%8B&oq=%E5%8C%97%E5%B3%B6%E5%BA%B7%E4%BB%8B&aqs=chrome..69i57j0i512l9.870j0j9&sourceid=chrome&ie=UTF-8'],
+//     // ['「他人の期待に耳を傾けてはいけない。自分の人生を生き、自分の期待に応えるのだ。」 by タイガーウッズ(ゴルフ選手)', 'https://www.google.com/search?q=%E3%82%BF%E3%82%A4%E3%82%AC%E3%83%BC%E3%82%A6%E3%83%83%E3%82%BA&oq=%E3%82%BF%E3%82%A4%E3%82%AC%E3%83%BC%E3%82%A6%E3%83%83%E3%82%BA&aqs=chrome..69i57j0i131i433j0i512j0i131i433j0i512l4j0i131i433j0i512.854j0j9&sourceid=chrome&ie=UTF-8'],
+//     // ['「物事、小事より大事は発するものなり。油断すべからず。」 by 伊達政宗(独眼竜)', 'https://www.google.com/search?q=%E4%BC%8A%E9%81%94%E6%94%BF%E5%AE%97&oq=%E4%BC%8A%E9%81%94%E6%94%BF%E5%AE%97&aqs=chrome..69i57j35i39j69i59j0i433i512j0i512l3j69i60.719j0j9&sourceid=chrome&ie=UTF-8'],
+//     ['仙台伝統のずんだ餅 枝豆の味が濃い絶品ずんだ餅なら秋保温泉近くの さいち へ', 'https://ameblo.jp/junmami2428/entry-12473765949.html'],
+//     ['王道の和菓子のお土産なら 喜久福', 'https://kikusuian.jp/shop/jujutsukaisen/'],
+//     ['冷凍で持ち帰り可！ 王道の牛タンのお土産・お食事なら 牛タン専門店 司', 'https://www.gyutan-tsukasa.co.jp/'],
+//     ['頑張った自分へご褒美 仙台限定の上品なフランス菓子 マカロン・焼き菓子・ケーキ カズノリイケダ', 'https://www.kazunoriikeda.com/item/index.html'],
+//     ['1000円以下で極旨カキフライ定食!定禅寺通りの景色を見ながら。 KAKIYA', 'https://kakiyanokakiya.gorp.jp/'],
+//     ['綺麗な仙台市街を展望しながら戦国時代にタイムスリップ 仙台城址', 'https://wondertrip.jp/96050/'],
+//     ['仙台来たならマスト! ずんだシェイク は仙台駅内で買えますよ', 'https://travel.navitime.com/ja/area/jp/guide/NTJsdj1001/'],
+//     ['サンドウィッチマン考案 噂のコペリタンを食べた瞬間、世界が変わります', 'https://eatmap-sendai.com/hachi-koperitan/'],
+//     ['仙台の優雅な朝。軽い朝食には だし茶漬け がオススメ！ 体の中から温まります', 'https://tabelog.com/miyagi/A0401/A040101/4019037/'],
+//     ['新幹線から降りて小腹が空いたアナタへ。宮城県産お米を使った おにぎり はいかがですか？', 'https://retty.me/area/PRE04/ARE158/SUB15801/100001264640/'],
+//     ['仙台駅東側を冒険した先に待っている「旨い」とんかつ 精肉専門店本気のこだわりに感動', 'https://tonkatsu-sugi.com/'],
+//     ['光のページェントを見ながら大事な人と食事がしたい。そんなアナタへ最高級の仙台牛料理を', 'https://www.t-taka.com/'],
+//     ['肉を愛する大人が集う上質な空間。個室で最上級の米沢牛を堪能しましょう', 'https://team-toranomon.com/shop-ekimae/'],
+//     ['クリスマス・年末は光のページェントで美しく輝く冬の仙台を味わいながら散歩しましょう', 'https://sendaihikape.jp/'],
+//     ['大会翌日の疲れを癒す。厳選したみやぎの地酒と共に天然あなごの逸品料理をご賞味下さい', 'https://www.anago-sugai.jp/'],
+//     ['創業53年・長く愛されてきた仙台洋菓子の名店。定禅寺通り散歩後にモカ・エクレアはいかが', 'https://tabelog.com/miyagi/A0401/A040101/4003285/'],
+//     ['あんこ好き必見!お昼には売り切れる四角いどら焼き は食べ歩きや家族へのお土産に最適', 'https://macaro-ni.jp/40282'],
+//     ['お車で来られた方へ是非おすすめ! 体育館から15分で行ける秋保温泉で疲れをスッキリ流す', 'https://www.jalan.net/news/article/238064/'],
+//     ['電車でも行ける 仙台で小旅行するなら日本三景・松島へ', 'https://illumi.walkerplus.com/detail/ar0204e398152/'],
+//     ['仙台駅から車で30分 朝に頂く新鮮な海の幸が安い。その場で網焼きが美味い。 閖上朝市', 'https://www.kankou.natori.miyagi.jp/tokusan/1387'],
+//     ['爽快！森へ打ち込むバッティングセンター', 'https://nishisendai-battingcage.themedia.jp/'],
+//     ['東北を旅した思い出には、かんのやのくるみゆべし。"家伝くるみゆべし"をどうぞ', 'https://www.yubeshi.co.jp/fs/yubeshi/c/yubeshi_kaden'],
+//     ['萩の咲き乱れる宮城野の空にぽっかり浮かぶ名月をかたどった銘菓・萩の月はいかがですか', 'https://www.sanzen.co.jp/product/haginotsuki/index.html'],
+//     ['体育館から車で20分 日本三名瀑のひとつにも数えられる秋保大滝をご覧下さい ', 'http://www.city.sendai.jp/ryokuchihozen/mesho100sen/ichiran/077.html'],
+//     ['仙台名物「笹かまぼこ」名付け親の老舗 阿部蒲鉾店は多彩なかまぼこを提供しています', 'https://www.abekama.co.jp/'],
+//     ['あの宮城県出身のイケメンも太鼓判を押す。高レベルな回転を見せる回転寿司店「廻鮮寿司 塩釜港」', 'https://tabelog.com/miyagi/A0404/A040404/4003018/'],
+//     ['文化人と建築人は必見！美術や映像文化の活動拠点。せんだいメディアテークへ。', 'https://www.smt.jp/'],
+//     ['サンドウィッチマンもテレビで紹介。一日30食限定!?究極のアジフライ。酒肴ノ食卓 氏ノ木。', 'https://tabelog.com/miyagi/A0401/A040101/4016692/'],
+//     ['縁結び&食べ歩き。仙台駅から車で1時間の定義山で、名物の三角油揚げを食べましょう。', 'https://jogi.jp/'],
+//     ['三代続くおでんの名店「おでん三吉」。冷えた体に優しい出汁の味がしみます。', 'https://oden-sankichi.com/'],
+//     ['宮城の日本酒に合う炭火焼と魚介のお店「斎太郎」。冬にはせり鍋、牡蠣鍋に新名物「通風鍋」も。', 'https://tabelog.com/miyagi/A0401/A040101/4002874/'],
+//     ['大会終わりに厚切りの焼肉とビール。宮城で焼肉といえば「焼肉ぐら」。', 'https://www.yakiniku-gula.com/'],
+//     ['仙台の名所をバスで巡る。瑞鳳殿、仙台城跡、大崎八幡宮をまわれます。るーぷる仙台。', 'https://loople-sendai.jp/'],
+//     ['国分町で呑んだ〆に「仙台っ子」。こってりした見た目ですが、まろやかなコクのラーメンです。', 'https://ramendo-sendaikko.com/'],
+//     ['地元ののんべえに愛される壱弐参（いろは）横丁。隠れた名店が立ち並びます。', 'http://www.iroha-yokocho.jp/'],
+//     ['仙台市民の合言葉「ステグラ前」。特に意味はないけど、地元民ぶってみませんか？', 'https://yorimichi-sendai.jp/item/001'],
+//     ['暮らしをあたたかくする東北のいいもの、おいています。「東北スタンダードマーケット」', 'https://tohokumarket.theshop.jp/'],
+//     ['新幹線を待つ時間に美味しいサイフォンコーヒーで一息。「カフェ 杜の香り」', 'https://www.livit.jregroup.ne.jp/detail/144'],
+//     ['仙台から少し足をのばして南三陸・気仙沼へドライブ。宮城の新たな魅力がたくさんあります。', 'https://www.pref.miyagi.jp/soshiki/ks-tihouken-e/km-info.html'],
+//     ['カフェ・レストランの併設されたおしゃれな図書館。多賀城市図書館', 'https://tagajo.city-library.jp/library/'],
+//     ['旬の海産物をその場で海鮮丼に。新鮮なメバチマグロはいかがですか？塩釜水産物卸売市場', 'http://www.nakaoroshi.or.jp/'],
+//     ['四季折々で一番おいしい漁師料理。今の時期は「かき飯」「ほっき飯」。「旬魚・鮨の店 あら浜」', 'https://www.arahama.jp/watari.html'],
+//     ['旬のフルーツを使ったケーキ、ジュース、パフェ。もちろんそのままでも。くだものは「いたがき」', 'http://www.itagaki-jp.com/shop/01/'],
+//     ['地元の飲料メーカーが産んだ"新名物"。「牛タンサイダー」「ずんだサイダー」一飲の価値あり。', 'https://www.tresbon.co.jp/product/57/'],
+//     ['仙台駅から電車で20分。癒し極める至福の天然温泉。ぬくもりとくつろぎの空間で体の芯まで浄化', 'https://sunpia-sendai.jp/onsen/about'],
+//     ['仙台駅から北へ車で30分。入浴+岩盤浴が1人900円で大満足!電気風呂に入った翌日は体が軽い!', 'https://ryusenjinoyu.com/izumi/bath.html'],
+//     ['萩の月だけじゃない！伊達絵巻は一味違う美味しさ。小倉餡とクリームをバームクーヘンで包みました', 'https://www.sanzen.co.jp/product/meika/index.html'],
+//     ['女性におすすめ♡仙台の“おしゃれで可愛い”お土産15選', 'https://happycruise.jp/sendai-gift-women/'],
+//     ['美味しい酒と一緒に、脂ののったイワシにかぶりつけ。仙台一の居酒屋「ちょーちょ」', 'https://cho-cho.net/'],
+//     ['アーケードに佇む隠れ家的カフェ。チーズケーキとガトーショコラは絶品。「cafe haven\'t we met opus」', 'http://haventwemet.jp/'],
+//     ['煮干しが好きならここに行け。煮干ラーメン専門店「千極煮干」', 'https://www.sennibo.com/'],
+//     ['宮城のブランド銀鮭・銀王を使った鮭料理専門店「宮城ゴチ酒場 銀結び」', 'https://sendaiginmusubi.com/'],
+//     ['サンドウィッチマンなど有名人が多数訪れる牛タン老舗「萃萃（すいすい）」', 'http://suisui.toronshan.jp/'],
+//     ['季節ごとに厳選された芳醇な香りの紅茶。テイスティングされた最高の紅茶を適正価格で楽しめます', 'https://www.ganesh.co.jp/'],
+//   ];
+
+// function moveText() {
+//   let moveTextArea = document.getElementById('scroll-text');
+//   let randomNo = Math.floor(Math.random() * scroll_infos.length);
+//   $('#scroll-text').attr('data-id', String(randomNo));
+//   moveTextArea.innerHTML = scroll_infos[randomNo][0];
+//   moveTextArea.href = scroll_infos[randomNo][1];
+//   document.getElementById('scroll-text-area').style.animation = 'move 15s linear infinite';
+// }
+// moveText();
+// setInterval(moveText, 15000);
+</script>
+
+ </body>
+</html>

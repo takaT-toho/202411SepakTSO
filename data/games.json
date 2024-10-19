@@ -1,0 +1,17 @@
+[
+    {
+      "id": 1,
+      "round": 1,
+      "time": "10:00",
+      "court": "A",
+      "gameNum": 100,
+      "leftTeam": "イーグルイーグル",
+      "rightTeam": "タイガータイガー",
+      "leftSets": [15, 9, 0],
+      "rightSets": [8, 15, 0],
+      "leftJudge": "ホークス",
+      "rightJudge": "ライオンズ",
+      "status": "試合終了"
+    }
+  ]
+  
