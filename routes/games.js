@@ -40,12 +40,12 @@ router.get('/', (req, res) => {
         gd.points2setB,
         gd.points3setB
     FROM 
-        game g
-    JOIN court c ON g.courtId = c.courtId
-    JOIN regu aRegu ON g.areguId = aRegu.reguId
-    JOIN regu bRegu ON g.breguId = bRegu.reguId
-    JOIN regu mainJudgeRegu ON g.mainJudgeReguId = mainJudgeRegu.reguId
-    JOIN regu subJudgeRegu ON g.subJudgeReguId = subJudgeRegu.reguId
+        GAME g
+    JOIN COURT c ON g.courtId = c.courtId
+    JOIN REGU aRegu ON g.areguId = aRegu.reguId
+    JOIN REGU bRegu ON g.breguId = bRegu.reguId
+    JOIN REGU mainJudgeRegu ON g.mainJudgeReguId = mainJudgeRegu.reguId
+    JOIN REGU subJudgeRegu ON g.subJudgeReguId = subJudgeRegu.reguId
     JOIN gameDetail gd ON g.gameId = gd.gameId
   `;
 
