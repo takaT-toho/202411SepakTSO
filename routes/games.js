@@ -45,8 +45,9 @@ router.get('/', (req, res) => {
     JOIN REGU aRegu ON g.areguId = aRegu.reguId
     JOIN REGU bRegu ON g.breguId = bRegu.reguId
     JOIN REGU mainJudgeRegu ON g.mainJudgeReguId = mainJudgeRegu.reguId
-    JOIN REGU subJudgeRegu ON g.subJudgeReguId = subJudgeRegu.reguId
+    LEFT JOIN REGU subJudgeRegu ON g.subJudgeReguId = subJudgeRegu.reguId
     JOIN gameDetail gd ON g.gameId = gd.gameId
+    ORDER BY g.gameId;
   `;
 
   connection.query(query, (error, results) => {

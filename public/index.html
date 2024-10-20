@@ -343,10 +343,10 @@ fetch('/api/regus')
   .then(data => {
     const reguList = document.getElementById('regu_list');
     const athleteReguList = createReguList(data.athlete);
-    // const enjoyReguList = createReguList(data.enjoy);
+    const enjoyReguList = createReguList(data.enjoy);
 
-    // reguList.innerHTML = athleteReguList + enjoyReguList;
-    reguList.innerHTML += athleteReguList;
+    reguList.innerHTML += athleteReguList + enjoyReguList;
+    // reguList.innerHTML += athleteReguList;
   });
 
 // メインタブの要素を取得する
