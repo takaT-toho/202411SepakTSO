@@ -1,4 +1,5 @@
-#### セキュリティグループにSSHとWebを入れる
+#### セキュリティグループ設定
+SSHとWebとMySQLを入れる
 
 #### TeraTermなどでVPSにSSH接続する
 
@@ -26,13 +27,23 @@
 `sudo mysql -u root`
 `CREATE USER 'your_use_name'@'localhost' IDENTIFIED BY 'your_password';`
 `GRANT ALL PRIVILEGES ON * . * TO 'your_use_name'@'localhost';`
+`CREATE USER 'your_use_name'@'%' IDENTIFIED BY 'your_password';`
+`GRANT ALL PRIVILEGES ON *.* TO 'your_use_name'@'%' WITH GRANT OPTION;`
 `FLUSH PRIVILEGES;`
 `quit`
 `mysql -u sendaiuser -p`
 
+#### MySQLを別のネットワークからもアクセス出来るようにする
+/etc/mysql/mysql.conf.d/mysqld.cnf のファイルを変更する
+```
+- bind-address = 127.0.0.1
++ bind-address = 0.0.0.0 (またはその他の特定のIPアドレス)
+```
+
 #### ファイアウォール設定
 `sudo ufw allow 80/tcp`
 `sudo ufw allow 443/tcp`
+`sudo ufw allow 3306`
 
 #### フォルダおよびファイルを作成する
 `mkdir project`
