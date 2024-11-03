@@ -29,13 +29,15 @@
 		        </div>
             
             <div class="model-teams">
-                <div class="team-name team-left">
-                    <div id="modal_left_team_name">イーグルイーグル</div>
-                </div>
-                <div class="vs">VS</div>
-                <div class="team-name team-right">
-                    <div id="modal_right_team_name">タイガータイガー</div>
-                </div>
+              <div class="team-area">
+                <div class="win-lose-label" id="modal_left_win_lose"></div>
+                <div class="team-name team-left" id="modal_left_team_name">イーグルイーグル</div>
+              </div>
+              <div class="vs">VS</div>
+              <div class="team-area">
+                <div class="win-lose-label" id="modal_right_win_lose"></div>
+                <div class="team-name team-right" id="modal_right_team_name">タイガータイガー</div>
+              </div>
             </div>
             
             <div class="score">
@@ -113,16 +115,18 @@
             <div class="form-group">
               <select id="time_select_button">
                 <option value="" selected>開始時間</option>
-                <option value="10:00">10:00</option>
-                <option value="10:40">10:40</option>
-                <option value="11:20">11:20</option>
-                <option value="12:00">12:00</option>
-                <option value="12:40">12:40</option>
-                <option value="13:20">13:20</option>
+                <option value="10:30">10:30</option>
+                <option value="11:05">11:05</option>
+                <option value="11:40">11:40</option>
+                <option value="12:15">12:15</option>
+                <option value="12:50">12:50</option>
+                <option value="13:25">13:25</option>
                 <option value="14:00">14:00</option>
-                <option value="14:40">14:40</option>
-                <option value="15:30">15:30</option>
-                <option value="16:40">16:40</option>
+                <option value="14:35">14:35</option>
+                <option value="15:10">15:10</option>
+                <option value="15:45">15:45</option>
+                <option value="16:20">16:20</option>
+                <option value="17:05">17:05</option>
               </select>
             </div>
             <div class="form-group">
@@ -136,12 +140,6 @@
                 <option value="F">F</option>
                 <option value="G">G</option>
                 <option value="H">H</option>
-                <option value="I">I</option>
-                <option value="J">J</option>
-                <option value="K">K</option>
-                <option value="L">L</option>
-                <option value="M">M</option>
-                <option value="N">N</option>
               </select>
             </div>
             <div class="form-group">
@@ -272,14 +270,14 @@ fetch('/api/games')
       let rowClass = "";
       let game_status = "";
       let game_status_text = "";
-      if (game.isFinished === 1) {
-        rowClass = "_finished";
-        game_status = "finished";
-        game_status_text = "終了済";
-      } else if (game.isStarted === 0) {
+      if (game.isStarted === 0) {
         rowClass = "not_started";
         game_status = "not-started";
         game_status_text = "試合前";      
+      } else if (game.isFinished === 1) {
+        rowClass = "_finished";
+        game_status = "finished";
+        game_status_text = "終了済";
       } else if (game.isStarted === 1) {
         rowClass = "in_progress";
         game_status = "in-progress";
@@ -322,7 +320,9 @@ fetch('/api/games')
           </button>
         </div>
       `;
-      infoDiv.appendChild(gameDiv);
+      if (game.gameId !== 9999) {
+        infoDiv.appendChild(gameDiv);
+      }
     });
   });
 
@@ -507,7 +507,7 @@ function searchEvent() {
         return true;
       }else if (marker === MARKER.FINISHED && isFinished === 1) {
         return true;
-      }else if (marker === MARKER.ONGOING && isStarted === 1) {
+      }else if (marker === MARKER.ONGOING && isStarted === 1 && isFinished === 0) {
         return true;
       }else if (marker === MARKER.UPCOMING && isStarted === 0) {
         return true;
@@ -575,7 +575,7 @@ function searchEvent() {
     if (searchConditions.reguList !== "" && marker == MARKER.MYSCHEDULE) {
       data.forEach(game => {
         if (game.areguAbb === searchConditions.myFavorite || game.breguAbb === searchConditions.myFavorite
-        || game.mainJudgeReguName === searchConditions.myFavorite || game.subJudgeReguName === searchConditions.myFavorite) {
+        || game.mainJudgeReguAbb === searchConditions.myFavorite || game.subJudgeReguAbb === searchConditions.myFavorite) {
           if (id_stock.indexOf(game.gameId) == -1) {
             id_stock.push(game.gameId);
             isEmpty = false;
@@ -601,18 +601,18 @@ function searchEvent() {
     // tbodyにデータ表示
     let tableRows = '';
     data.forEach(game => {
-      if (id_stock.includes(game.gameId)) {
+      if (id_stock.includes(game.gameId) && game.gameId !== 9999) {
         let rowClass = "";
         let game_status = "";
         let game_status_text = "";
-        if (game.isFinished === 1) {
-          rowClass = "_finished";
-          game_status = "finished";
-          game_status_text = "終了済";
-        } else if (game.isStarted === 0) {
+        if (game.isStarted === 0) {
           rowClass = "not_started";
           game_status = "not-started";
           game_status_text = "試合前";      
+        } else if (game.isFinished === 1) {
+          rowClass = "_finished";
+          game_status = "finished";
+          game_status_text = "終了済";
         } else if (game.isStarted === 1) {
           rowClass = "in_progress";
           game_status = "in-progress";
@@ -755,8 +755,8 @@ function createModalWindow(gameid) {
     setTextContent("modal_right_3set", filteredGame.points3setB);
     setTextContent("modal_right_total_sets", filteredGame.setNumGotByB);
 
-    setTextContent("modal_left_judge", filteredGame.mainJudgeReguName ? `【主審】${filteredGame.mainJudgeReguName}` : "");
-    setTextContent("modal_right_judge", filteredGame.subJudgeReguName ? ` 【副審】${filteredGame.subJudgeReguName}` : "");
+    setTextContent("modal_left_judge", filteredGame.mainJudgeReguAbb ? `【主審】${filteredGame.mainJudgeReguAbb}` : "");
+    setTextContent("modal_right_judge", filteredGame.subJudgeReguAbb ? ` 【副審】${filteredGame.subJudgeReguAbb}` : "");
 
     const gameStatusMapping = (isStarted, isFinished) => {
       if (isFinished === 1) {
@@ -767,6 +767,28 @@ function createModalWindow(gameid) {
         return "試合中";
       }
     };
+
+    const setWinLoseLabel = (elementId, result) => {
+        const label = document.getElementById(elementId);
+        label.textContent = result;
+        label.classList.add(result.toLowerCase());
+    };
+
+    // 試合終了時の処理
+    if (filteredGame.isFinished === 1) {
+        if (filteredGame.winnerReguAbb === filteredGame.areguAbb) {
+            setWinLoseLabel("modal_left_win_lose", "WIN");
+            setWinLoseLabel("modal_right_win_lose", "LOSE");
+        } else {
+            setWinLoseLabel("modal_left_win_lose", "LOSE");
+            setWinLoseLabel("modal_right_win_lose", "WIN");
+        }
+    } else {
+        document.getElementById("modal_left_win_lose").textContent = "";
+        document.getElementById("modal_right_win_lose").textContent = "";
+        document.getElementById("modal_left_win_lose").classList.remove("win", "lose");
+        document.getElementById("modal_right_win_lose").classList.remove("win", "lose");
+    }
 
     const game_status = gameStatusMapping(filteredGame.isStarted, filteredGame.isFinished);
     setTextContent("modal_game_status", game_status || "");

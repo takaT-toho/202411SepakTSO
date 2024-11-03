@@ -429,6 +429,42 @@ h1 {
 }
 
 .model-teams {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.team-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: transparent; /* 背景色を透明に設定 */
+}
+
+.win-lose-label {
+  font-size: 0.875rem;
+  font-weight: bold; /* 太字 */
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  margin-top: 0.25rem;
+  min-width: 3rem;
+  text-align: center;
+  /* 背景色を削除 */
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.2); /* テキストシャドウ */
+}
+
+.win-lose-label.win {
+color: #ffd700;
+}
+
+.win-lose-label.lose {
+color: #d1d5db
+
+}
+
+.model-teams {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   gap: 1rem;

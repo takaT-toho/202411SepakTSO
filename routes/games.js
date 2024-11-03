@@ -29,6 +29,8 @@ router.get('/', (req, res) => {
         bRegu.abbreviation AS breguAbb,
         mainJudgeRegu.abbreviation AS mainJudgeReguAbb,
         subJudgeRegu.abbreviation AS subJudgeReguAbb,
+        winnerRegu.abbreviation AS winnerReguAbb,
+        loserRegu.abbreviation AS loserReguAbb,
         g.isStarted,
         g.isFinished,
         g.setNumGotByA,
@@ -46,6 +48,8 @@ router.get('/', (req, res) => {
     JOIN REGU bRegu ON g.breguId = bRegu.reguId
     JOIN REGU mainJudgeRegu ON g.mainJudgeReguId = mainJudgeRegu.reguId
     LEFT JOIN REGU subJudgeRegu ON g.subJudgeReguId = subJudgeRegu.reguId
+    LEFT JOIN REGU winnerRegu ON g.winner = winnerRegu.reguId
+    LEFT JOIN REGU loserRegu ON g.loser = loserRegu.reguId
     JOIN gameDetail gd ON g.gameId = gd.gameId
     ORDER BY g.gameId;
   `;
