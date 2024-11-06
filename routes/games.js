@@ -3,20 +3,30 @@ const mysql = require('mysql2');
 const router = express.Router();
 require('dotenv').config();
 
-const connection = mysql.createConnection({
+// const connection = mysql.createConnection({
+//   host: process.env.DB_HOST,
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_DATABASE
+// });
+
+const pool = mysql.createPool({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE
+  database: process.env.DB_DATABASE,
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0
 });
 
-connection.connect((err) => {
-  if (err) {
-    console.error('データベースへの接続に失敗しました: ' + err.stack);
-    return;
-  }
-  console.log('データベースに接続しました。ID: ' + connection.threadId);
-});
+// pool.connect((err) => {
+//   if (err) {
+//     console.error('データベースへの接続に失敗しました: ' + err.stack);
+//     return;
+//   }
+//   console.log('データベースに接続しました。ID: ' + connection.threadId);
+// });
 
 router.get('/', (req, res) => {
   const query = `
@@ -54,8 +64,9 @@ router.get('/', (req, res) => {
     ORDER BY g.gameId;
   `;
 
-  connection.query(query, (error, results) => {
+  pool.query(query, (error, results) => {
     if (error) {
+      console.error('データの取得に失敗しました: ' + error);
       return res.status(500).send('データの取得に失敗しました。');
     }
     res.json(results);
