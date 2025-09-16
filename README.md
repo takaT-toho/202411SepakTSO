@@ -99,8 +99,10 @@ SSHとWebとMySQLを入れる
 server {
 	listen 80;
 	server_name example.com(or ip address);
+    # root /var/www/html; 消す
 	
 	location / {
+        # try_files $uri $uri/ =404;
 		proxy_pass http://localhost:3000;
 		proxy_http_version 1.1;
 		proxy_set_haeder Upgrade $http_upgrade;
@@ -108,8 +110,12 @@ server {
 		proxy_set_header Host $host;
 		proxy_cache_bypass $http_upgrade;
 	}
+    location /api/ {
+        proxy_pass http://localhost:3000;
+    }
 }
 ```
+`sudo nginx -t`
 `sudo systemctl restart nginx`
 
 
