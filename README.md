@@ -79,6 +79,9 @@ SSHとWebとMySQLを入れる
 + bind-address = 0.0.0.0 (またはその他の特定のIPアドレス)
 ```
 
+再起動：
+`sudo systemctl restart mysql`
+
 #### ファイアウォール設定
 `sudo ufw allow 80/tcp`
 `sudo ufw allow 443/tcp`
